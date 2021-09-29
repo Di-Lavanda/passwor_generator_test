@@ -34,57 +34,57 @@ namespace password_generator_test
                 lenght = Convert.ToInt32(textBoxLenght.Text);
                 for (int i = 1; i <= lenght; i++)   //основной цикл функции
                 {
-                    int a = rnd.Next(0, 25);
-                    tempstr = undercaseletters[a];
+                    int random = rnd.Next(0, 25);
+                    tempstr = undercaseletters[random];
                     result += tempstr;
                     if ((checkBox1.Checked) && (i < lenght)) //вторая проверка необходима для паролей нечетной длины
                     {
-                        a = rnd.Next(0, 9);
-                        result += numbersFunction(a);   //включает цифры в пароль
+                        random = rnd.Next(0, 9);
+                        result += numbersFunction(random);   //включает цифры в пароль
                         i++;
                     }
                     if ((checkBox2.Checked) && (i < lenght))
                     {
-                        a = rnd.Next(0, 25);
-                        result += uppercaseFunction(a); //включает заглавные буквы в пароль
+                        random = rnd.Next(0, 25);
+                        result += uppercaseFunction(random); //включает заглавные буквы в пароль
                         i++;
                     }
                     if ((checkBox3.Checked) && (i < lenght))
                     {
-                        a = rnd.Next(0, 9);
-                        result += punctuationFunction(a);   //вкулючает знаки пукнтуации в пароль
+                        random = rnd.Next(0, 9);
+                        result += punctuationFunction(random);   //вкулючает знаки пукнтуации в пароль
                         i++;
                     }
-                    if (!(string.IsNullOrEmpty(specSymboltextBox.Text)))
+                    if (!(string.IsNullOrEmpty(specSymboltextBox.Text)) && (i < lenght))
                     {
                         int lenghtSpecSymbol = (specSymboltextBox.Text).Length;
-                        a = rnd.Next(0, lenghtSpecSymbol);
-                        result += specSymbolFunction(a);    //включает спецсимволы в пароль
+                        random = rnd.Next(0, lenghtSpecSymbol);
+                        result += specSymbolFunction(random);    //включает спецсимволы в пароль
                         i++;
                     }
                 }
                 textBox3.Text = result;
             }
         }       //фнукции со словарями
-        public char uppercaseFunction(int a)
+        public char uppercaseFunction(int random)
         {           
             string uppercaseletters = "ABCDEFGHIJKLMNOPQRSTUVQXYZ";
-            return uppercaseletters[a];
+            return uppercaseletters[random];
         }
-        public char numbersFunction(int a)
+        public char numbersFunction(int random)
         {
-            string uppercaseletters = "0123456789";
-            return uppercaseletters[a];
+            string numbers = "0123456789";
+            return numbers[random];
         }
-        public char punctuationFunction(int a)
+        public char punctuationFunction(int random)
         {
-            string uppercaseletters = ".,?!;:-()'";
-            return uppercaseletters[a];
+            string punctuation = ".,?!;:-()'";
+            return punctuation[random];
         }
-        public char specSymbolFunction(int a)
+        public char specSymbolFunction(int random)
         {
             string specSymbol = (specSymboltextBox.Text);
-            return specSymbol[a];
+            return specSymbol[random];
         }
     }
 }
